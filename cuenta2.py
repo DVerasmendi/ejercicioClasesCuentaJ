@@ -25,14 +25,12 @@ class Cuenta:
             return self.cantidad, monto_retiro
     
 class CuentaJoven(Cuenta):
-    def __init__(self, titular,cantidad, bonificacion):
-       Cuenta.__init__(self, titular, cantidad)
-       self.bonificacion=bonificacion
+    def __init__(self):
+        super().__init__()
         
     def mostrar(self):
         mensaje='Cuenta Joven'
         return mensaje,self.titular, self.cantidad, self.bonificacion
-        pass
     
         
     def esTitularValido(self,edad):
