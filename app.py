@@ -55,7 +55,7 @@ if '1' in opcioninicial:
     if edad<18:
         print('No puedes aperturar una cuenta por ser MENOR de edad')
 
-    elif 18<edad<25:
+    elif 18<=edad<=25:
         print('Desea ingresar dinero de Apertura a su cuenta JOVEN? \n1.-SI \n2.-NO \n')  
         respuesta=input()
         if '1' in respuesta:    
@@ -66,6 +66,7 @@ if '1' in opcioninicial:
         else:
             monto_apertura=0   
         user_cuenta_joven=CuentaJoven(titular=usuario,cantidad=monto_apertura,bonificacion='30')
+        edad_valida=evaluacion_titular(edad)
         print('\n')
         mostrar_cuentaJoven(usuario,edad,monto_apertura)
             
@@ -103,16 +104,15 @@ if '1' in opcioninicial:
                 print('Ingrese el monto a Depositar: ')  
                 monto_depositar=float(input())
                 print('\n')
-                if 18<edad<25:
+                if edad_valida==True:
                     depositarDineroCuentaJoven(monto_depositar)
                 else:
                     depositarDinero(monto_depositar) 
             if option == 2:
                 print('Ingrese el monto a Retirar: ')  
                 monto_retirar=float(input())
-                if 18<edad<25:
+                if edad_valida==True:
                     print('\n')
-                    edad_valida=evaluacion_titular(edad)
                     retirarDineroCuentaJoven(edad_valida,monto_retirar)
                 else:
                     print('\n')

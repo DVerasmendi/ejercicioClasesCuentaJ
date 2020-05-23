@@ -36,7 +36,7 @@ class CuentaJoven(Cuenta):
     
         
     def esTitularValido(self,edad):
-        if 18<edad<25:
+        if 18<=edad<=25:
             return True
         else:
             return False
