@@ -3,13 +3,17 @@ from cuenta import Cuenta, CuentaJoven
 
 def new_user(usuario,new_saldo=0):
     imprimir_usuario=list(user.mostrar())
-    print('Nuevo Usuario Creado: ',imprimir_usuario[0])
-    print('Saldo Nuevo Usuario: ',imprimir_usuario[1])
+    print('NOMBRE Usuario : ',imprimir_usuario[0])
+    print('SALDO Usuario: ',imprimir_usuario[1])
     
 def depositarDinero(monto_deposito):
-    depositar=list(user.ingresar(monto_deposito))
-    print('Dinero Depositado: ', depositar[1])
-    print('Nuevo Saldo Disponible: ', depositar[0])
+    depositar=user.ingresar(monto_deposito)
+    if depositar==None:
+        pass
+    else:
+        depositar=list(depositar)
+        print('Dinero Depositado: ', depositar[1])
+        print('Nuevo Saldo Disponible: ', depositar[0])
 
 
 def retirarDinero(monto_retirar):
@@ -27,9 +31,13 @@ def mostrar_cuentaJoven(usuario,edad, new_saldo=0):
     print('Bonificacion: ',imprimir_usuario_cuentajoven[3])
 
 def depositarDineroCuentaJoven(monto_deposito):
-    depositar=list(user_cuenta_joven.ingresar(monto_deposito))
-    print('Dinero Depositado: ', depositar[1])
-    print('Nuevo Saldo Disponible: ', depositar[0])
+    depositar=user_cuenta_joven.ingresar(monto_deposito)
+    if depositar==None:
+        pass
+    else:
+        depositar=list(depositar)
+        print('Dinero Depositado: ', depositar[1])
+        print('Nuevo Saldo Disponible: ', depositar[0])
 
 def evaluacion_titular(edad):
     evaluacion_edad=user_cuenta_joven.esTitularValido(edad)
@@ -94,7 +102,8 @@ if '1' in opcioninicial:
     What would you like to do (type a number and press Enter)?
     - Type 1: DEPOSITAR DINERO a su cuenta.
     - Type 2: RETIRAR DINERO de su cuenta.
-    - Type 3: To quit
+    - Type 3: MOSTRAR USER Y DINERO de su cuenta.
+    - Type 4: To quit
         ''')
 
         option = int(input("Enter a number:"))
@@ -104,21 +113,27 @@ if '1' in opcioninicial:
                 print('Ingrese el monto a Depositar: ')  
                 monto_depositar=float(input())
                 print('\n')
-                if edad_valida==True:
+                if 18<=edad<=25:
                     depositarDineroCuentaJoven(monto_depositar)
                 else:
                     depositarDinero(monto_depositar) 
             if option == 2:
                 print('Ingrese el monto a Retirar: ')  
                 monto_retirar=float(input())
-                if edad_valida==True:
+                if 18<=edad<=25:
                     print('\n')
                     retirarDineroCuentaJoven(edad_valida,monto_retirar)
                 else:
                     print('\n')
                     retirarDinero(monto_retirar)
-                
-            if option==3:
+                    
+            if option == 3:
+                if 18<=edad<=25:
+                    mostrar_cuentaJoven(usuario,edad)
+                else:
+                    new_user(usuario)
+                    
+            if option==4:
                 print("Bye bye!")
                 stop = True             
         except IndexError as e:

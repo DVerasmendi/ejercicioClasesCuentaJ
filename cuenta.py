@@ -17,6 +17,7 @@ class Cuenta:
     def retirar(self, monto_retiro):
         if monto_retiro<0:
             print('No puedes retirar este monto negativo')
+            return self.cantidad, 0
         elif self.cantidad<monto_retiro:
             print('No posees esta cantidad disponible en tu cuenta')
             return self.cantidad, 0
@@ -33,7 +34,6 @@ class CuentaJoven(Cuenta):
         mensaje='Cuenta Joven'
         return mensaje,self.titular, self.cantidad, self.bonificacion
         pass
-    
         
     def esTitularValido(self,edad):
         if 18<=edad<=25:
@@ -45,6 +45,7 @@ class CuentaJoven(Cuenta):
         if edad ==True:
             if monto_retiro<0:
                 print('No puedes retirar este monto negativo')
+                return self.cantidad, 0
             elif self.cantidad<monto_retiro:
                 print('No posees esta cantidad disponible en tu cuenta')
                 return self.cantidad, 0
